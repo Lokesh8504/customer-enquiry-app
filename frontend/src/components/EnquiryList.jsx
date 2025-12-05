@@ -53,103 +53,105 @@ export default function EnquiryList({ refreshTrigger }) {
   const totalPages = Math.ceil(count / PAGE_SIZE) || 1;
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-2 sm:space-y-3">
       <form
         onSubmit={handleSearchSubmit}
-        className="flex gap-2 items-center"
+        className="flex gap-1.5 sm:gap-2 items-center"
       >
         <input
-          className="flex-1 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
+          className="flex-1 rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-xs sm:text-sm outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
           placeholder="Search by name or email…"
           value={q}
           onChange={(e) => setQ(e.target.value)}
         />
         <button
           type="submit"
-          className="inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-50"
+          className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 sm:px-4 py-1.5 text-[11px] sm:text-xs font-medium text-slate-700 hover:bg-slate-50"
         >
           Search
         </button>
       </form>
 
       {loading && (
-        <p className="text-xs text-slate-500">Loading enquiries…</p>
+        <p className="text-[11px] sm:text-xs text-slate-500">Loading enquiries…</p>
       )}
       {error && (
-        <p className="text-xs text-red-600 bg-red-50 border border-red-100 rounded-md px-3 py-2">
+        <p className="text-[11px] sm:text-xs text-red-600 bg-red-50 border border-red-100 rounded-md px-2.5 py-1.5">
           {error}
         </p>
       )}
       {!loading && enquiries.length === 0 && !error && (
-        <p className="text-xs text-slate-500">No enquiries found.</p>
+        <p className="text-[11px] sm:text-xs text-slate-500">No enquiries found.</p>
       )}
 
       {enquiries.length > 0 && (
         <>
           <div className="border border-slate-200 rounded-lg overflow-hidden">
-            <table className="w-full border-collapse text-xs">
-              <thead className="bg-slate-50">
-                <tr>
-                  <th className="px-3 py-2 text-left font-semibold text-slate-600 border-b border-slate-200">
-                    Name
-                  </th>
-                  <th className="px-3 py-2 text-left font-semibold text-slate-600 border-b border-slate-200">
-                    Email
-                  </th>
-                  <th className="px-3 py-2 text-left font-semibold text-slate-600 border-b border-slate-200">
-                    Phone
-                  </th>
-                  <th className="px-3 py-2 text-left font-semibold text-slate-600 border-b border-slate-200">
-                    Message
-                  </th>
-                  <th className="px-3 py-2 text-left font-semibold text-slate-600 border-b border-slate-200">
-                    Created
-                  </th>
-                  <th className="px-3 py-2 text-left font-semibold text-slate-600 border-b border-slate-200 w-[70px]">
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {enquiries.map((enquiry, idx) => (
-                  <tr
-                    key={enquiry.id}
-                    className={idx % 2 === 0 ? "bg-white" : "bg-slate-50/60"}
-                  >
-                    <td className="px-3 py-2 border-b border-slate-100">
-                      {enquiry.name}
-                    </td>
-                    <td className="px-3 py-2 border-b border-slate-100">
-                      {enquiry.email}
-                    </td>
-                    <td className="px-3 py-2 border-b border-slate-100">
-                      {enquiry.phone}
-                    </td>
-                    <td className="px-3 py-2 border-b border-slate-100">
-                      {enquiry.message}
-                    </td>
-                    <td className="px-3 py-2 border-b border-slate-100">
-                      {new Date(enquiry.created_at).toLocaleString()}
-                    </td>
-                    <td className="px-3 py-2 border-b border-slate-100">
-                      <button
-                        className="inline-flex items-center rounded-full bg-red-500 px-3 py-1 text-[11px] font-medium text-white hover:bg-red-600"
-                        onClick={() => handleDelete(enquiry.id)}
-                      >
-                        Delete
-                      </button>
-                    </td>
+            <div className="max-w-full overflow-x-auto">
+              <table className="min-w-full text-[11px] sm:text-xs border-collapse">
+                <thead className="bg-slate-50">
+                  <tr>
+                    <th className="px-2.5 py-2 text-left font-semibold text-slate-600 border-b border-slate-200">
+                      Name
+                    </th>
+                    <th className="px-2.5 py-2 text-left font-semibold text-slate-600 border-b border-slate-200">
+                      Email
+                    </th>
+                    <th className="px-2.5 py-2 text-left font-semibold text-slate-600 border-b border-slate-200">
+                      Phone
+                    </th>
+                    <th className="px-2.5 py-2 text-left font-semibold text-slate-600 border-b border-slate-200">
+                      Message
+                    </th>
+                    <th className="px-2.5 py-2 text-left font-semibold text-slate-600 border-b border-slate-200">
+                      Created
+                    </th>
+                    <th className="px-2.5 py-2 text-left font-semibold text-slate-600 border-b border-slate-200 w-[70px]">
+                      Actions
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {enquiries.map((enquiry, idx) => (
+                    <tr
+                      key={enquiry.id}
+                      className={idx % 2 === 0 ? "bg-white" : "bg-slate-50/60"}
+                    >
+                      <td className="px-2.5 py-1.5 border-b border-slate-100">
+                        {enquiry.name}
+                      </td>
+                      <td className="px-2.5 py-1.5 border-b border-slate-100">
+                        {enquiry.email}
+                      </td>
+                      <td className="px-2.5 py-1.5 border-b border-slate-100">
+                        {enquiry.phone}
+                      </td>
+                      <td className="px-2.5 py-1.5 border-b border-slate-100">
+                        {enquiry.message}
+                      </td>
+                      <td className="px-2.5 py-1.5 border-b border-slate-100">
+                        {new Date(enquiry.created_at).toLocaleString()}
+                      </td>
+                      <td className="px-2.5 py-1.5 border-b border-slate-100">
+                        <button
+                          className="inline-flex items-center rounded-full bg-red-500 px-3 py-1 text-[10px] sm:text-[11px] font-medium text-white hover:bg-red-600"
+                          onClick={() => handleDelete(enquiry.id)}
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
 
-          <div className="flex justify-between items-center mt-2 text-[11px] text-slate-500">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1.5 sm:gap-2 mt-1.5 text-[11px] text-slate-500">
             <span>
               Page {page} of {totalPages} · {count} enquiries
             </span>
-            <div className="flex gap-2">
+            <div className="flex gap-1.5 sm:gap-2">
               <button
                 type="button"
                 onClick={() => loadData(page - 1, q)}
