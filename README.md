@@ -50,8 +50,7 @@ Visit the live site:
   **https://customer-enquiry-app.onrender.com/api/enquiries/**
 
 ### ✔ Frontend (Vercel)
-- Root Directory: `frontend`  
-- Build auto-detected (Vite)  
+- Root Directory: `frontend`   
 - Live URL:  
   **https://customer-enquiry-app.vercel.app**
 
